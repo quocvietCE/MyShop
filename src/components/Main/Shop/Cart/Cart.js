@@ -32,7 +32,7 @@ import CartView from "./CartView";
 
 class RouterCart extends Component {
   render() {
-    const { cartArray } = this.props.cartArray;
+    const { cartArray } = this.props;
     return (
       <Router>
         <Scene key="CART">

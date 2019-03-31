@@ -36,7 +36,6 @@ export default class Shop extends React.Component {
     global.addProductToCart = this.addProductToCart.bind(this);
   }
 
-  
   componentWillMount() {
     // getCart().then(cartArray => this.setState({ cartArray }));
   }
@@ -53,7 +52,6 @@ export default class Shop extends React.Component {
   addProductToCart(product) {
     this.setState({ cartArray: this.state.cartArray.concat(product) });
   }
-
 
   render() {
     const { iconStyle } = styles;
@@ -89,7 +87,6 @@ export default class Shop extends React.Component {
             selectedTitleStyle={{ color: "#34B089", fontFamily: "Avenir" }}
           >
             <Cart cartArray={cartArray} />
-            {/* <CartView/> */}
           </TabNavigator.Item>
 
           <TabNavigator.Item

@@ -24,17 +24,10 @@ function toTitleCase(str) {
 }
 
 class CartView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartArray: []
-    };
-    
-  }
-
-  addProductToCart(product) {
-    this.setState({ cartArray: this.state.cartArray.concat(product) });
-  }
+  
+  // addProductToCart(product) {
+  //   this.setState({ cartArray: this.state.cartArray.concat(product) });
+  // }
 
   gotoDetail() {
     // const { navigation } = this.props;
@@ -42,9 +35,9 @@ class CartView extends Component {
     Actions.PRODUCT_DETAIL();
   }
 
-  componentDidMount() {
-    getCart().then(cartArray => this.setState({ cartArray }));
-  }
+  // componentDidMount() {
+  //   getCart().then(cartArray => this.setState({ cartArray }));
+  // }
 
   render() {
     const { cartArray } = this.props;
