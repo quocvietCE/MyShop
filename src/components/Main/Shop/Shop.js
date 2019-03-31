@@ -4,12 +4,11 @@ import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import TabNavigator from "react-native-tab-navigator";
 
 import Home from "./Home/Home";
-import HomeView from "./Home/HomeView";
 import Contact from "./Contact/Contact";
 import Cart from "./Cart/Cart";
-// import CartView from "./Cart/CartView";
 import Search from "./Search/Search";
 import Header from "./Header";
+import global from "../../global";
 
 import homeIconS from "../../../media/appIcon/home.png";
 import homeIcon from "../../../media/appIcon/home0.png";
@@ -29,26 +28,36 @@ export default class Shop extends React.Component {
     super(props);
     this.state = {
       selectedTab: "home",
-      // types: [], làm bên HomeView
-      cartArray: []
-      // topProducts: [] làm bên HomeView
+      // types: [], làm bên HomeView.
+      types: [],
+      cartArray: [],
+      topProducts: [] //làm bên HomeView
     };
+    global.addProductToCart = this.addProductToCart.bind(this);
   }
 
+  
   componentWillMount() {
-    getCart().then(cartArray => this.setState({ cartArray }));
+    // getCart().then(cartArray => this.setState({ cartArray }));
   }
 
-  // componentDidMount() {
-  //   initData().then(resJSON => {
-  //     const { type, product } = resJSON;
-  //     this.setState({ types: type, topProducts: product });
-  //   });
-  // } làm bên HomeView
+  componentDidMount() {
+    initData().then(resJSON => {
+      const { type, product } = resJSON;
+      this.setState({ types: type, topProducts: product });
+      console.log("-----------Shop-------------");
+      console.log(topProducts);
+    });
+  } //làm bên HomeView
+
+  addProductToCart(product) {
+    this.setState({ cartArray: this.state.cartArray.concat(product) });
+  }
+
 
   render() {
     const { iconStyle } = styles;
-    const { selectedTab, cartArray } = this.state;
+    const { selectedTab, cartArray, types, topProducts } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Header onOpen={() => this.props.navigation.openDrawer()} />
@@ -64,9 +73,7 @@ export default class Shop extends React.Component {
             onPress={() => this.setState({ selectedTab: "home" })}
             selectedTitleStyle={{ color: "#34B089", fontFamily: "Avenir" }}
           >
-            <Home
-            // types={types}
-            />
+            <Home types={types} topProducts={topProducts} />
           </TabNavigator.Item>
 
           <TabNavigator.Item
@@ -81,7 +88,7 @@ export default class Shop extends React.Component {
             badgeText={cartArray.length}
             selectedTitleStyle={{ color: "#34B089", fontFamily: "Avenir" }}
           >
-            <Cart />
+            <Cart cartArray={cartArray} />
             {/* <CartView/> */}
           </TabNavigator.Item>
 

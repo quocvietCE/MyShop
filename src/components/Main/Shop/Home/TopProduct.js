@@ -10,11 +10,10 @@ import {
   ListView
 } from "react-native";
 
-import sp1 from "../../../../media/temp/sp1.jpeg";
-import sp2 from "../../../../media/temp/sp2.jpeg";
-import sp3 from "../../../../media/temp/sp3.jpeg";
-import sp4 from "../../../../media/temp/sp4.jpeg";
-const url = "http://10.102.1.236/api_MyShop/images/product/";
+import { Actions } from "react-native-router-flux";
+
+// const url = "http://10.102.1.236/api_MyShop/images/product/";
+const url = "http://192.168.56.1/api_MyShop/images/product/";
 
 const { width, height } = Dimensions.get("window");
 
@@ -35,18 +34,24 @@ export default class TopProduct extends React.Component {
   //   navigation.navigate("PRODUCT_DETAIL", product);
   // }
 
+  // goToDetail(product) {
+  //   const { navigation } = this.props;
+  //   navigation.navigate("PRODUCT_DETAIL", {
+  //     // itemId: 86,
+  //     // otherParam: 'anything you want here',
+  //     id: product.id,
+  //     name: product.name,
+  //     price: product.price,
+  //     color: product.color,
+  //     material: product.material,
+  //     description: product.description,
+  //     images: product.images
+  //   });
+  // }
+
   goToDetail(product) {
-    const { navigation } = this.props;
-    navigation.navigate("PRODUCT_DETAIL", {
-      // itemId: 86,
-      // otherParam: 'anything you want here',
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      color: product.color,
-      material: product.material,
-      description: product.description,
-      images: product.images
+    Actions.PRODUCT_DETAIL({
+      product
     });
   }
 
@@ -63,6 +68,8 @@ export default class TopProduct extends React.Component {
     } = styles;
 
     const { topProducts } = this.props;
+    console.log("-----------TopProduct-------------");
+    console.log(topProducts);
 
     return (
       <View style={container}>

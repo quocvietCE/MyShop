@@ -11,16 +11,23 @@
     "expo": "^32.0.6",
     "react": "16.6.3",
     "react-native": "0.58.5",
-    "react-navigation": "^3.3.2"
+    "react-native-gesture-handler": "^1.1.0",
+    "react-native-router-flux": "^4.0.6",
+    "react-native-swiper": "^1.5.14",
+    "react-native-tab-navigator": "^0.3.4",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.1.0",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.52.0",
     "react-test-renderer": "16.6.3"
   },
-  "jest": { 
+  "jest": {
     "preset": "react-native"
   }
 }

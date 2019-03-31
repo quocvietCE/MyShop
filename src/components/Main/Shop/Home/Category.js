@@ -8,19 +8,18 @@ import {
   TouchableOpacity
 } from "react-native";
 import Swiper from "react-native-swiper";
-
-import littleIcon from "../../../../media/temp/little.jpg";
-import maxiIcon from "../../../../media/temp/maxi.jpg";
-import partyIcon from "../../../../media/temp/party.jpg";
+import { Actions } from "react-native-router-flux";
 
 const { width, height } = Dimensions.get("window");
 
-const url = "http://10.102.1.236/api_MyShop/images/type/";
+// const url = "http://10.102.1.236/api_MyShop/images/type/";
+const url = "http://192.168.56.1/api_MyShop/images/type/";
 
 export default class Category extends React.Component {
   gotoListProduct() {
-    const { navigation } = this.props;
-    navigation.navigate("LIST_PRODUCT");
+    // const { navigation } = this.props;
+    // navigation.navigate("LIST_PRODUCT");
+    Actions.LIST_PRODUCT();
   }
 
   render() {

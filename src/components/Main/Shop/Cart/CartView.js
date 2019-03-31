@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import global from "../../../global";
 import getCart from "../../../../api/getCart";
+import { Actions } from "react-native-router-flux";
 
 // import sp1 from "../../.././../media/temp/sp1.jpeg";
 import sp1 from "../../../../media/temp/sp1.jpeg";
@@ -28,7 +29,7 @@ class CartView extends Component {
     this.state = {
       cartArray: []
     };
-    global.addProductToCart = this.addProductToCart.bind(this);
+    
   }
 
   addProductToCart(product) {
@@ -36,8 +37,9 @@ class CartView extends Component {
   }
 
   gotoDetail() {
-    const { navigation } = this.props;
-    navigation.navigate("PRODUCT_DETAIL");
+    // const { navigation } = this.props;
+    // navigation.navigate("PRODUCT_DETAIL");
+    Actions.PRODUCT_DETAIL();
   }
 
   componentDidMount() {
@@ -45,7 +47,7 @@ class CartView extends Component {
   }
 
   render() {
-    const { cartArray } = this.state;
+    const { cartArray } = this.props;
     const {
       main,
       checkoutButton,

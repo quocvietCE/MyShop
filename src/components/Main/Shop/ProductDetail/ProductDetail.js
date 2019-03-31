@@ -8,19 +8,20 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import { Actions } from "react-native-router-flux";
 
-import img1 from "../../../../media/temp/sp5.jpeg";
-import img2 from "../../../../media/temp/sp4.jpeg";
 import global from "../../../global";
 
 const back = require("../../../../media/appIcon/back.png");
 const cart = require("../../../../media/appIcon/cartfull.png");
-const url = "http://10.102.1.236/api_MyShop/images/product/";
+// const url = "http://10.102.1.236/api_MyShop/images/product/";
+const url = "http://192.168.56.1/api_MyShop/images/product/";
 
 export default class ProductDetail extends Component {
   goBack() {
-    const { navigation } = this.props;
-    navigation.goBack();
+    // const { navigation } = this.props;
+    // navigation.goBack();
+    Actions.pop();
   }
 
   addThisProductToCart() {
@@ -49,19 +50,29 @@ export default class ProductDetail extends Component {
       txtColor
     } = styles;
 
-    const { navigation } = this.props;
+    // const { navigation } = this.props;
 
     // Data from ProductDetail
-    const idProduct = navigation.getParam("id", "No-id");
-    const nameProduct = navigation.getParam("name", "No-Name");
-    const priceProduct = navigation.getParam("price", "No-price");
-    const colorProduct = navigation.getParam("color", "No-color");
-    const materialProduct = navigation.getParam("material", "No-material");
-    const descriptionProduct = navigation.getParam(
-      "description",
-      "No-discription"
-    );
-    const imagesProduct = navigation.getParam("images", "No-images");
+    // const idProduct = navigation.getParam("id", "No-id");
+    // const nameProduct = navigation.getParam("name", "No-Name");
+    // const priceProduct = navigation.getParam("price", "No-price");
+    // const colorProduct = navigation.getParam("color", "No-color");
+    // const materialProduct = navigation.getParam("material", "No-material");
+    // const descriptionProduct = navigation.getParam(
+    //   "description",
+    //   "No-discription"
+    // );
+    // const imagesProduct = navigation.getParam("images", "No-images");
+
+    const {
+      id,
+      name,
+      price,
+      color,
+      material,
+      description,
+      images
+    } = this.props.product;
 
     return (
       <View style={wrapper}>
@@ -84,11 +95,11 @@ export default class ProductDetail extends Component {
               horizontal
             >
               <Image
-                source={{ uri: `${url}${imagesProduct[0]}` }}
+                source={{ uri: `${url}${images[0]}` }}
                 style={productImageStyle}
               />
               <Image
-                source={{ uri: `${url}${imagesProduct[1]}` }}
+                source={{ uri: `${url}${images[1]}` }}
                 style={productImageStyle}
               />
             </ScrollView>
@@ -96,13 +107,13 @@ export default class ProductDetail extends Component {
           <View style={footer}>
             <View style={titleContainer}>
               <Text style={textMain}>
-                <Text style={textBlack}>{nameProduct.toUpperCase()}</Text>
+                <Text style={textBlack}>{name.toUpperCase()}</Text>
                 <Text style={textHighlight}> / </Text>
-                <Text style={textSmoke}>{priceProduct}$</Text>
+                <Text style={textSmoke}>{price}$</Text>
               </Text>
             </View>
             <View style={descContainer}>
-              <Text style={descStyle}>{descriptionProduct}</Text>
+              <Text style={descStyle}>{description}</Text>
               <View
                 style={{
                   flexDirection: "row",
@@ -110,14 +121,14 @@ export default class ProductDetail extends Component {
                   paddingTop: 15
                 }}
               >
-                <Text style={txtMaterial}>Material {materialProduct}</Text>
+                <Text style={txtMaterial}>Material {material}</Text>
                 <View style={{ flexDirection: "row" }}>
-                  <Text style={txtColor}>Color {colorProduct}</Text>
+                  <Text style={txtColor}>Color {color}</Text>
                   <View
                     style={{
                       height: 15,
                       width: 15,
-                      backgroundColor: colorProduct.toLowerCase(),
+                      backgroundColor: color.toLowerCase(),
                       borderRadius: 15,
                       marginLeft: 10,
                       borderWidth: 1,
