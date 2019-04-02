@@ -30,6 +30,10 @@ class CartView extends Component {
     global.incrQuantity(id);
   }
 
+  decrQuantity(id) {
+    global.decrQuantity(id);
+  }
+
   // addProductToCart(product) {
   //   this.setState({ cartArray: this.state.cartArray.concat(product) });
   // }
@@ -96,11 +100,15 @@ class CartView extends Component {
                 </View>
                 <View style={productController}>
                   <View style={numberOfProduct}>
-                    <TouchableOpacity onPress={()=> this.incrQuantity(cartItem.product.id) }>
+                    <TouchableOpacity
+                      onPress={() => this.incrQuantity(cartItem.product.id)}
+                    >
                       <Text>+</Text>
                     </TouchableOpacity>
                     <Text>{cartItem.quantity}</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => this.decrQuantity(cartItem.product.id)}
+                    >
                       <Text>-</Text>
                     </TouchableOpacity>
                   </View>
