@@ -16,6 +16,9 @@ import { Actions } from "react-native-router-flux";
 // import sp1 from "../../.././../media/temp/sp1.jpeg";
 import sp1 from "../../../../media/temp/sp1.jpeg";
 
+const url = "http://10.102.1.236/api_MyShop/images/product/";
+// const url = "http://192.168.56.1/api_MyShop/images/product/";
+
 function toTitleCase(str) {
   return str.replace(
     /\w\S*/g,
@@ -30,9 +33,9 @@ class CartView extends Component {
   // }
 
   gotoDetail() {
-    // const { navigation } = this.props;
-    // navigation.navigate("PRODUCT_DETAIL");
-    Actions.PRODUCT_DETAIL();
+    const { navigation } = this.props;
+    navigation.navigate("PRODUCT_DETAIL");
+    // Actions.PRODUCT_DETAIL();
   }
 
   // componentDidMount() {
@@ -40,7 +43,7 @@ class CartView extends Component {
   // }
 
   render() {
-    const { cartArray } = this.props;
+    const { cartArray } = this.props.screenProps;
     const {
       main,
       checkoutButton,
@@ -64,9 +67,9 @@ class CartView extends Component {
           dataSource={new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
           }).cloneWithRows(cartArray)}
-          renderRow={product => (
+          renderRow={cartItem => (
             <View style={productStyle}>
-              <Image source={sp1} style={productImage} />
+              <Image source={{ uri: `${url}${cartItem.product.images[0]}` }} style={productImage} />
               <View style={[mainRight]}>
                 <View
                   style={{
@@ -74,7 +77,7 @@ class CartView extends Component {
                     flexDirection: "row"
                   }}
                 >
-                  <Text style={txtName}>{toTitleCase("Name")}</Text>
+                  <Text style={txtName}>{toTitleCase(cartItem.product.name)}</Text>
                   <TouchableOpacity>
                     <Text style={{ fontFamily: "Avenir", color: "#969696" }}>
                       X
@@ -82,14 +85,14 @@ class CartView extends Component {
                   </TouchableOpacity>
                 </View>
                 <View>
-                  <Text style={txtPrice}>{100}$</Text>
+                  <Text style={txtPrice}>{cartItem.product.price}$</Text>
                 </View>
                 <View style={productController}>
                   <View style={numberOfProduct}>
                     <TouchableOpacity>
                       <Text>+</Text>
                     </TouchableOpacity>
-                    <Text>{3}</Text>
+                    <Text>{cartItem.quantity}</Text>
                     <TouchableOpacity>
                       <Text>-</Text>
                     </TouchableOpacity>

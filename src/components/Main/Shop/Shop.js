@@ -47,15 +47,23 @@ export default class Shop extends React.Component {
       console.log("-----------Shop-------------");
       console.log(topProducts);
     });
+    getCart().then(cartArray => this.setState({ cartArray }));
   } //làm bên HomeView
 
   addProductToCart(product) {
-    this.setState({ cartArray: this.state.cartArray.concat(product) });
+    // setState là một phương thức bất đồng bộ
+    this.setState(
+      { cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
+      () => saveCart(this.state.cartArray)
+    );
+    // saveCart(this.state.cartArray)
   }
 
   render() {
     const { iconStyle } = styles;
     const { selectedTab, cartArray, types, topProducts } = this.state;
+    console.log("----------------selectedTab---------------");
+    console.log(selectedTab);
     return (
       <View style={{ flex: 1 }}>
         <Header onOpen={() => this.props.navigation.openDrawer()} />
@@ -71,7 +79,11 @@ export default class Shop extends React.Component {
             onPress={() => this.setState({ selectedTab: "home" })}
             selectedTitleStyle={{ color: "#34B089", fontFamily: "Avenir" }}
           >
-            <Home types={types} topProducts={topProducts} />
+            <Home
+              // types={types}
+              // topProducts={topProducts}
+              screenProps={{ types, topProducts }}
+            />
           </TabNavigator.Item>
 
           <TabNavigator.Item
@@ -86,7 +98,7 @@ export default class Shop extends React.Component {
             badgeText={cartArray.length}
             selectedTitleStyle={{ color: "#34B089", fontFamily: "Avenir" }}
           >
-            <Cart cartArray={cartArray} />
+            <Cart screenProps={{ cartArray }} />
           </TabNavigator.Item>
 
           <TabNavigator.Item

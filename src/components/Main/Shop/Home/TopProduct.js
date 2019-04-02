@@ -10,10 +10,10 @@ import {
   ListView
 } from "react-native";
 
-import { Actions } from "react-native-router-flux";
+// import { Actions } from "react-native-router-flux";
 
-// const url = "http://10.102.1.236/api_MyShop/images/product/";
-const url = "http://192.168.56.1/api_MyShop/images/product/";
+const url = "http://10.102.1.236/api_MyShop/images/product/";
+// const url = "http://192.168.56.1/api_MyShop/images/product/";
 
 const { width, height } = Dimensions.get("window");
 
@@ -34,26 +34,31 @@ export default class TopProduct extends React.Component {
   //   navigation.navigate("PRODUCT_DETAIL", product);
   // }
 
-  // goToDetail(product) {
-  //   const { navigation } = this.props;
-  //   navigation.navigate("PRODUCT_DETAIL", {
-  //     // itemId: 86,
-  //     // otherParam: 'anything you want here',
-  //     id: product.id,
-  //     name: product.name,
-  //     price: product.price,
-  //     color: product.color,
-  //     material: product.material,
-  //     description: product.description,
-  //     images: product.images
-  //   });
-  // }
-
   goToDetail(product) {
-    Actions.PRODUCT_DETAIL({
+    const { navigation } = this.props;
+    navigation.navigate("PRODUCT_DETAIL", {
+      // itemId: 86,
+      // otherParam: 'anything you want here',
+      // id: product.id,
+      // name: product.name,
+      // price: product.price,
+      // color: product.color,
+      // material: product.material,
+      // description: product.description,
+      // images: product.images
       product
     });
+    console.log("======TopProduct======");
+    console.log("======goToDetail======");
+    console.log(product);
+    console.log("============");
   }
+
+  // goToDetail(product) {
+  //   Actions.PRODUCT_DETAIL({
+  //     product
+  //   });
+  // }
 
   render() {
     const {

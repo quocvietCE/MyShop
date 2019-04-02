@@ -11,52 +11,58 @@ import TopProduct from "./TopProduct";
 
 // console.log(this.props.types)
 
-// const HomeStackNavigator = createStackNavigator(
-//   {
-//     HOME_VIEW: {
-//       screen: HomeView,
-// screenProps=(this.props.types)
-// types={screenProps}
-// params: { types: screenProps },
-// types: { types },
-// navigationOptions: {
-//   // title: "Home View"na
-//       header:null
-//     }
-//   },
-//   LIST_PRODUCT: {
-//     screen: ListProduct,
-//     navigationOptions: {
-//       title: "List Product",
-//       header:null
-//     }
-//   },
-//   PRODUCT_DETAIL: {
-//     screen: ProductDetail,
-//     navigationOptions: {
-//       title: "Product Detail",
-//       header:null
-//     }
-//   }
-// },
-// {
-//   initialRouteName: "HOME_VIEW",
-// initialRouteParams:{types:this.state.types}
-//   }
-// );
+const HomeStackNavigator = createStackNavigator(
+  {
+    HOME_VIEW: {
+      screen: HomeView,
+      // screenProps=(props.types),
+      // types={{proptypes}}
+      // params: { types: screenProps },
+      // types: { types },
+      navigationOptions: {
+        // title: "Home View"na
+        header: null
+      }
+    },
+    LIST_PRODUCT: {
+      screen: ListProduct,
+      navigationOptions: {
+        title: "List Product",
+        header: null
+      }
+    },
+    PRODUCT_DETAIL: {
+      screen: ProductDetail,
+      navigationOptions: {
+        title: "Product Detail",
+        header: null
+      }
+    }
+  },
+  {
+    initialRouteName: "HOME_VIEW"
+    // initialRouteParams:{types:this.state.types}
+  }
+);
 
 {
   /* <HomeStackNavigator screenProps={this.props.types}/> */
 }
+// export default HomeStackNavigator;
 
-// export default (HomeStackNavigatorContainer = createAppContainer(
-//   HomeStackNavigator
-// ));
+export default (HomeStackNavigatorContainer = createAppContainer(
+  HomeStackNavigator
+));
 
-// const RouterHome = types => {
-class RouterHome extends Component {
-  render() {
-    const { types, topProducts } = this.props;
+/* 2-Apr-2019 dùng lại navigation
+
+const Home = props => {
+// class Home extends Component {
+  // render() {
+    console.log("----------------HOME_ROUTER---------------");
+    // console.log(selectedTab);
+    // const { types, topProducts } = this.props;
+    const { types, topProducts } = props;
     return (
       <Router>
         <Scene key="HOME">
@@ -75,7 +81,9 @@ class RouterHome extends Component {
         </Scene>
       </Router>
     );
-  }
+  // }
 }
 
-export default RouterHome;
+export default Home;
+
+2-Apr-2019 dùng lại navigation */ 

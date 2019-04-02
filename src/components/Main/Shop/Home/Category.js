@@ -17,9 +17,9 @@ const url = "http://192.168.56.1/api_MyShop/images/type/";
 
 export default class Category extends React.Component {
   gotoListProduct() {
-    // const { navigation } = this.props;
-    // navigation.navigate("LIST_PRODUCT");
-    Actions.LIST_PRODUCT();
+    const { navigation } = this.props;
+    navigation.navigate("LIST_PRODUCT");
+    // Actions.LIST_PRODUCT();
   }
 
   render() {

@@ -8,24 +8,30 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import { Actions } from "react-native-router-flux";
+// import { Actions } from "react-native-router-flux";
 
 import global from "../../../global";
 
 const back = require("../../../../media/appIcon/back.png");
 const cart = require("../../../../media/appIcon/cartfull.png");
-// const url = "http://10.102.1.236/api_MyShop/images/product/";
-const url = "http://192.168.56.1/api_MyShop/images/product/";
+const url = "http://10.102.1.236/api_MyShop/images/product/";
+// const url = "http://192.168.56.1/api_MyShop/images/product/";
 
 export default class ProductDetail extends Component {
   goBack() {
-    // const { navigation } = this.props;
-    // navigation.goBack();
-    Actions.pop();
+    const { navigation } = this.props;
+    
+    navigation.goBack();
+    // Actions.pop();
   }
 
   addThisProductToCart() {
-    const { product } = this.props;
+    // const { product } = this.props;
+    const { product } = this.props.navigation.state.params;
+    // console.log("======ProductDetail======");
+    // console.log("======addThisProductToCart======");
+    // console.log(product);
+    // console.log("============");
     global.addProductToCart(product);
   }
 
@@ -72,8 +78,21 @@ export default class ProductDetail extends Component {
       material,
       description,
       images
-    } = this.props.product;
+    // } = this.props.product;
+    } = this.props.navigation.state.params.product;
 
+    // const { product } = this.props;
+    // const { product } = this.props.navigation.state.params;
+    // console.log("======ProductDetail======");
+    // console.log("======render()======");
+    // console.log(product);
+    // console.log("============");
+
+    // return(
+    //   <View>
+    //     <Text>ProductDetail</Text>
+    //   </View>
+    // )
     return (
       <View style={wrapper}>
         <View style={cardStyle}>
