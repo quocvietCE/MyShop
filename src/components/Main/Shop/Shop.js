@@ -34,6 +34,7 @@ export default class Shop extends React.Component {
       topProducts: [] //làm bên HomeView
     };
     global.addProductToCart = this.addProductToCart.bind(this);
+    global.incrQuantity = this.incrQuantity.bind(this);
   }
 
   componentWillMount() {
@@ -58,6 +59,16 @@ export default class Shop extends React.Component {
     );
     // saveCart(this.state.cartArray)
   }
+
+  incrQuantity(productId) {
+    const newCart = this.state.cartArray.map(e => {
+      if (e.product.id !== productId) return e;
+      return { product: e.product, quantity: e.quantity + 1 };
+    });
+    this.setState({ cartArray: newCart });
+  }
+
+  decrQuantity(productId) {}
 
   render() {
     const { iconStyle } = styles;

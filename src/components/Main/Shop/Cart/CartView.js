@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import global from "../../../global";
 import getCart from "../../../../api/getCart";
-import { Actions } from "react-native-router-flux";
 
 // import sp1 from "../../.././../media/temp/sp1.jpeg";
 import sp1 from "../../../../media/temp/sp1.jpeg";
@@ -27,7 +26,10 @@ function toTitleCase(str) {
 }
 
 class CartView extends Component {
-  
+  incrQuantity(id) {
+    global.incrQuantity(id);
+  }
+
   // addProductToCart(product) {
   //   this.setState({ cartArray: this.state.cartArray.concat(product) });
   // }
@@ -69,7 +71,10 @@ class CartView extends Component {
           }).cloneWithRows(cartArray)}
           renderRow={cartItem => (
             <View style={productStyle}>
-              <Image source={{ uri: `${url}${cartItem.product.images[0]}` }} style={productImage} />
+              <Image
+                source={{ uri: `${url}${cartItem.product.images[0]}` }}
+                style={productImage}
+              />
               <View style={[mainRight]}>
                 <View
                   style={{
@@ -77,7 +82,9 @@ class CartView extends Component {
                     flexDirection: "row"
                   }}
                 >
-                  <Text style={txtName}>{toTitleCase(cartItem.product.name)}</Text>
+                  <Text style={txtName}>
+                    {toTitleCase(cartItem.product.name)}
+                  </Text>
                   <TouchableOpacity>
                     <Text style={{ fontFamily: "Avenir", color: "#969696" }}>
                       X
@@ -89,7 +96,7 @@ class CartView extends Component {
                 </View>
                 <View style={productController}>
                   <View style={numberOfProduct}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=> this.incrQuantity(cartItem.product.id) }>
                       <Text>+</Text>
                     </TouchableOpacity>
                     <Text>{cartItem.quantity}</Text>
