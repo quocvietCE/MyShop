@@ -34,6 +34,10 @@ class CartView extends Component {
     global.decrQuantity(id);
   }
 
+  removeProduct(id) {
+    global.removeProduct(id);
+  }
+
   // addProductToCart(product) {
   //   this.setState({ cartArray: this.state.cartArray.concat(product) });
   // }
@@ -89,7 +93,9 @@ class CartView extends Component {
                   <Text style={txtName}>
                     {toTitleCase(cartItem.product.name)}
                   </Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.removeProduct(cartItem.product.id)}
+                  >
                     <Text style={{ fontFamily: "Avenir", color: "#969696" }}>
                       X
                     </Text>
