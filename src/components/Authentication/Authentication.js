@@ -23,6 +23,10 @@ export default class Authentication extends Component {
     this.state = { isSignIn: true };
   }
 
+  gotoSignIn() {
+    this.setState({ isSignIn: true });
+  }
+
   //Debug test đăng ký lên server
   // componentDidMount() {
   //   console.log("-------------Authentication------------");
@@ -37,6 +41,12 @@ export default class Authentication extends Component {
 
   signUp() {
     this.setState({ isSignIn: false });
+  }
+
+  goBackToMain() {
+    const { navigation } = this.props;
+    navigation.goBack();
+    // navigation.navigate("MENU");
   }
 
   render() {
@@ -83,12 +93,16 @@ export default class Authentication extends Component {
     // );
     const { isSignIn } = this.state;
     // const mainJSX = isSignIn ? signInJSX : signUpJSX;
-    const mainJSX = isSignIn ? <SignIn /> : <SignUp />;
+    const mainJSX = isSignIn ? (
+      <SignIn goBackToMain={this.goBackToMain.bind(this)} />
+    ) : (
+      <SignUp gotoSignIn={this.gotoSignIn.bind(this)} />
+    );
 
     return (
       <View style={wrapper}>
         <View style={row1}>
-          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+          <TouchableOpacity onPress={() => this.goBackToMain()}>
             <Image source={icBack} style={iconStyle} />
           </TouchableOpacity>
           <Text style={titleStyle}>Wearing a Dress</Text>

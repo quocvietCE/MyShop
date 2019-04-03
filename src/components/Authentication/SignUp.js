@@ -35,7 +35,7 @@ class SignUp extends Component {
     Alert.alert(
       "Notice",
       "Sign Up Successfully",
-      [{ test: "OK", onPress: () => console.log("") }],
+      [{ text: "OK", onPress: this.props.gotoSignIn() }],
       { cancelable: false }
     );
   }
@@ -44,7 +44,14 @@ class SignUp extends Component {
     Alert.alert(
       "Notice",
       "Email has been used by other",
-      [{ test: "OK", onPress: () => console.log("") }],
+      [
+        {
+          text: "OK",
+          onPress: () => {
+            this.setState({ email: "" });
+          }
+        }
+      ],
       { cancelable: false }
     );
   }
