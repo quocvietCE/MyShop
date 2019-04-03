@@ -13,7 +13,7 @@ const CartStackNavigator = createStackNavigator(
         header:null
       }
     },
-    PRODUCT_DETAIL: {
+    PRODUCT_DETAIL_CART: {
       screen: ProductDetail,
       navigationOptions: {
         title: "Product Detail",

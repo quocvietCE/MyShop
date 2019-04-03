@@ -42,9 +42,12 @@ class CartView extends Component {
   //   this.setState({ cartArray: this.state.cartArray.concat(product) });
   // }
 
-  gotoDetail() {
+  gotoDetail(product) {
     const { navigation } = this.props;
-    navigation.navigate("PRODUCT_DETAIL");
+    navigation.navigate("PRODUCT_DETAIL_CART", { product });
+    console.log("======CartView gotoDetail======");
+    console.log(product);
+    console.log("============");
     // Actions.PRODUCT_DETAIL();
   }
 
@@ -69,6 +72,15 @@ class CartView extends Component {
       txtShowDetail,
       showDetailContainer
     } = styles;
+
+    const arrTotal = cartArray.map(e => e.product.price * e.quantity);
+    console.log("======CartView arrTotal======");
+    console.log(arrTotal);
+    console.log("============");
+    const total = arrTotal.length ? arrTotal.reduce((a, b) => a + b) : 0;
+    console.log("======CartView Total======");
+    console.log(total);
+    console.log("============");
     return (
       <View style={wrapper}>
         <ListView
@@ -118,7 +130,10 @@ class CartView extends Component {
                       <Text>-</Text>
                     </TouchableOpacity>
                   </View>
-                  <TouchableOpacity style={showDetailContainer}>
+                  <TouchableOpacity
+                    style={showDetailContainer}
+                    onPress={() => this.gotoDetail(cartItem.product)}
+                  >
                     <Text style={txtShowDetail}>SHOW DETAILS</Text>
                   </TouchableOpacity>
                 </View>
@@ -127,7 +142,7 @@ class CartView extends Component {
           )}
         />
         <TouchableOpacity style={checkoutButton}>
-          <Text style={checkoutTitle}>TOTAL {1000}$ CHECKOUT NOW</Text>
+          <Text style={checkoutTitle}>TOTAL {total}$ CHECKOUT NOW</Text>
         </TouchableOpacity>
       </View>
     );
