@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import signIn from "../../api/signIn";
 import global from "../global";
+import getToken from "../../api/getToken";
+import saveToken from "../../api/saveToken";
 
 class SignIn extends Component {
   constructor(props) {
@@ -18,6 +20,14 @@ class SignIn extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   getToken().then(a => {
+  //     console.log("======SignIn GetToken======");
+  //     console.log(a);
+  //     console.log("============");
+  //   });
+  // }
+
   onSingIn() {
     const { email, password } = this.state;
     signIn(email, password)
@@ -27,6 +37,7 @@ class SignIn extends Component {
         console.log("============");
         global.onSignIn(res.user);
         this.props.goBackToMain();
+        saveToken(res.token);
       })
       .catch(err => console.log(err));
   }

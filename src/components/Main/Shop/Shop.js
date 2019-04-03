@@ -22,6 +22,8 @@ import contactIcon from "../../../media/appIcon/contact0.png";
 import saveCart from "../../../api/saveCart";
 import getCart from "../../../api/getCart";
 import initData from "../../../api/initData";
+import checkLogin from "../../../api/checkLogin";
+import getToken from "../../../api/getToken";
 
 export default class Shop extends React.Component {
   constructor(props) {
@@ -48,7 +50,14 @@ export default class Shop extends React.Component {
       const { type, product } = resJSON;
       this.setState({ types: type, topProducts: product });
       console.log("-----------Shop-------------");
-      console.log(topProducts);
+      // console.log(topProducts);
+      getToken()
+        .then(token => checkLogin(token))
+        .then(res => {
+          console.log("check login", res);
+          global.onSignIn(res.user);
+        })
+        .catch(err => console.log("Loi check login", err));
     });
     getCart().then(cartArray => this.setState({ cartArray }));
   } //làm bên HomeView
