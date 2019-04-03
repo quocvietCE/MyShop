@@ -11,6 +11,7 @@ import { TextInput } from "react-native-gesture-handler";
 
 import icLogo from "../../media/appIcon/ic_logo.png";
 import icBack from "../../media/appIcon/back_white.png";
+import register from "../../api/register";
 
 const { height } = Dimensions.get("window");
 
@@ -20,12 +21,20 @@ export default class Authentication extends Component {
     this.state = { isSignIn: true };
   }
 
-  signIn(){
-    this.setState({isSignIn:true});
+  //Debug test đăng ký lên server
+  componentDidMount() {
+    console.log("-------------Authentication------------")
+    register("testEmail", "testName", "testPassword").then(res =>
+      console.log(res)
+    );
   }
 
-  signUp(){
-    this.setState({isSignIn:false});
+  signIn() {
+    this.setState({ isSignIn: true });
+  }
+
+  signUp() {
+    this.setState({ isSignIn: false });
   }
 
   render() {
@@ -68,9 +77,9 @@ export default class Authentication extends Component {
         </TouchableOpacity>
       </View>
     );
-    const {isSignIn} =this.state;
+    const { isSignIn } = this.state;
     const mainJSX = isSignIn ? signInJSX : signUpJSX;
-      
+
     return (
       <View style={wrapper}>
         <View style={row1}>
@@ -82,10 +91,16 @@ export default class Authentication extends Component {
         </View>
         {mainJSX}
         <View style={controlStyle}>
-          <TouchableOpacity style={signInStyle} onPress={this.signIn.bind(this)}>
+          <TouchableOpacity
+            style={signInStyle}
+            onPress={this.signIn.bind(this)}
+          >
             <Text style={isSignIn ? activeStyle : inactiveStyle}>SIGN IN</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={signUpStyle} onPress={this.signUp.bind(this)}>
+          <TouchableOpacity
+            style={signUpStyle}
+            onPress={this.signUp.bind(this)}
+          >
             <Text style={!isSignIn ? activeStyle : inactiveStyle}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
@@ -130,7 +145,7 @@ const styles = StyleSheet.create({
     // justifyContent:'center',
     // paddingHorizontal:50
     marginLeft: 35,
-    alignSelf:'stretch'
+    alignSelf: "stretch"
   },
   signInStyle: {
     backgroundColor: "#fff",

@@ -11,13 +11,13 @@ import OrderHistory from "../OrderHistory/OrderHistory";
 import ChangeInfo from '../ChangeInfo/ChangeInfo';
 
 
-export default class Main extends React.Component {
-  render() {
-    return (
-        <MainDrawerNavigator/>
-    );
-  }
-}
+// export default class Main extends React.Component {
+//   render() {
+//     return (
+//         <MainDrawerNavigator/>
+//     );
+//   }
+// }
 
 
 const StackMainDrawerNavigator = createDrawerNavigator({
@@ -46,3 +46,5 @@ const StackMainDrawerNavigator = createDrawerNavigator({
 );
 
 const MainDrawerNavigator = createAppContainer(StackMainDrawerNavigator);
+
+export default MainDrawerNavigator;
