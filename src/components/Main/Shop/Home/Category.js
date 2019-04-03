@@ -25,27 +25,27 @@ export default class Category extends React.Component {
   render() {
     const { types } = this.props;
     const { wrapper, textStyle, imageStyle, cateTitle } = styles;
+    const swiper = (
+      <Swiper showsPagination width={imageWidth} height={imageHeight}>
+        {types.map(e => (
+          <TouchableOpacity
+            onPress={this.gotoListProduct.bind(this)}
+            ekey={e.id}
+          >
+            <ImageBackground source={{ uri: url + e.image }} style={imageStyle}>
+              <Text style={cateTitle}>{e.name}</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        ))}
+      </Swiper>
+    );
     return (
       <View style={wrapper}>
         <View style={{ flex: 1, justifyContent: "center", paddingTop: 5 }}>
           <Text style={textStyle}>LIST OF CATEGORY</Text>
         </View>
         <View style={{ flex: 4, justifyContent: "flex-end" }}>
-          <Swiper>
-            {types.map(e => (
-              <TouchableOpacity
-                onPress={this.gotoListProduct.bind(this)}
-                ekey={e.id}
-              >
-                <ImageBackground
-                  source={{ uri: url + e.image }}
-                  style={imageStyle}
-                >
-                  <Text style={cateTitle}>{e.name}</Text>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </Swiper>
+          {types.length ? swiper : null}
         </View>
       </View>
     );

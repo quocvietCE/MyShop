@@ -24,6 +24,7 @@ import getCart from "../../../api/getCart";
 import initData from "../../../api/initData";
 import checkLogin from "../../../api/checkLogin";
 import getToken from "../../../api/getToken";
+import refreshToken from "../../../api/refreshToken";
 
 export default class Shop extends React.Component {
   constructor(props) {
@@ -50,16 +51,28 @@ export default class Shop extends React.Component {
       const { type, product } = resJSON;
       this.setState({ types: type, topProducts: product });
       console.log("-----------Shop-------------");
-      // console.log(topProducts);
-      getToken()
-        .then(token => checkLogin(token))
-        .then(res => {
-          console.log("check login", res);
-          global.onSignIn(res.user);
-        })
-        .catch(err => console.log("Loi check login", err));
+      console.log(topProducts);
     });
+    getToken()
+      .then(token => checkLogin(token))
+      .then(res => {
+        console.log("check login", res);
+        global.onSignIn(res.user);
+      })
+      .catch(err => console.log("Loi check login", err));
     getCart().then(cartArray => this.setState({ cartArray }));
+    // setInterval(() => {
+    //   getToken().then(token => refreshToken(token));
+    // }, 60 * 1000);
+
+    // check refresh Token
+    // setInterval(() => {
+    //   getToken().then(token => {
+    //     console.log("======Token after refresh======");
+    //     console.log(token);
+    //     console.log("============");
+    //   });
+    // }, 60 * 1000);
   } //làm bên HomeView
 
   addProductToCart(product) {
