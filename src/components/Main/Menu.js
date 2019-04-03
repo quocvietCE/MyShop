@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import profileIcon from "../../media/temp/profile.png";
 import global from "../global";
+import saveToken from "../../api/saveToken";
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,12 @@ export default class Menu extends React.Component {
     // this.setState({ isLogedIn: true });
     this.setState({ user });
   }
+
+  onSignOut() {
+    this.setState({ user: null });
+    saveToken("");
+  }
+
   render() {
     const {
       container,
@@ -55,7 +62,10 @@ export default class Menu extends React.Component {
           >
             <Text style={btnTextSignIn}>Change Info</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={btnStyleSignIn}>
+          <TouchableOpacity
+            style={btnStyleSignIn}
+            onPress={this.onSignOut.bind(this)}
+          >
             <Text style={btnTextSignIn}>Sign Out</Text>
           </TouchableOpacity>
         </View>
