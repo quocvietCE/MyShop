@@ -12,6 +12,8 @@ import { TextInput } from "react-native-gesture-handler";
 import icLogo from "../../media/appIcon/ic_logo.png";
 import icBack from "../../media/appIcon/back_white.png";
 import register from "../../api/register";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const { height } = Dimensions.get("window");
 
@@ -22,12 +24,12 @@ export default class Authentication extends Component {
   }
 
   //Debug test đăng ký lên server
-  componentDidMount() {
-    console.log("-------------Authentication------------")
-    register("testEmail", "testName", "testPassword").then(res =>
-      console.log(res)
-    );
-  }
+  // componentDidMount() {
+  //   console.log("-------------Authentication------------");
+  //   register("testEmail", "testName", "testPassword").then(res =>
+  //     console.log(res)
+  //   );
+  // }
 
   signIn() {
     this.setState({ isSignIn: true });
@@ -53,32 +55,35 @@ export default class Authentication extends Component {
       buttonText
     } = styles;
 
-    const signInJSX = (
-      <View>
-        <TextInput style={textInputStyle} placeholder="Enter your email" />
-        <TextInput style={textInputStyle} placeholder="Enter your Password" />
-        <TouchableOpacity style={signInNowStyle}>
-          <Text style={buttonText}>SIGN IN NOW</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    // Chuyển đén file SignIn riêng
+    // const signInJSX = <SignIn/> //(
+    //   <View>
+    //     <TextInput style={textInputStyle} placeholder="Enter your email" />
+    //     <TextInput style={textInputStyle} placeholder="Enter your Password" />
+    //     <TouchableOpacity style={signInNowStyle}>
+    //       <Text style={buttonText}>SIGN IN NOW</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    // );
 
-    const signUpJSX = (
-      <View>
-        <TextInput style={textInputStyle} placeholder="Enter your mane" />
-        <TextInput style={textInputStyle} placeholder="Enter your email" />
-        <TextInput style={textInputStyle} placeholder="Enter your Password" />
-        <TextInput
-          style={textInputStyle}
-          placeholder="Re-Enter your Password"
-        />
-        <TouchableOpacity style={signInNowStyle}>
-          <Text style={buttonText}>SIGN UP NOW</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    // const signUpJSX = <SignUp/>
+    // const signUpJSX = (
+    //   <View>
+    //     <TextInput style={textInputStyle} placeholder="Enter your mane" />
+    //     <TextInput style={textInputStyle} placeholder="Enter your email" />
+    //     <TextInput style={textInputStyle} placeholder="Enter your Password" />
+    //     <TextInput
+    //       style={textInputStyle}
+    //       placeholder="Re-Enter your Password"
+    //     />
+    //     <TouchableOpacity style={signInNowStyle}>
+    //       <Text style={buttonText}>SIGN UP NOW</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    // );
     const { isSignIn } = this.state;
-    const mainJSX = isSignIn ? signInJSX : signUpJSX;
+    // const mainJSX = isSignIn ? signInJSX : signUpJSX;
+    const mainJSX = isSignIn ? <SignIn /> : <SignUp />;
 
     return (
       <View style={wrapper}>
