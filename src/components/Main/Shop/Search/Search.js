@@ -1,4 +1,4 @@
-import { createAppContainer, createStackNavigator } from "react-navigation";
+import { createAppContainer, createStackNavigator, Header } from "react-navigation";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import SearchView from "./SearchView";
 
@@ -7,13 +7,17 @@ const SearchStackNavigator = createStackNavigator(
     SEARCH_VIEW: {
       screen: SearchView,
       navigationOptions: {
-        title: "Search View"
+        // title: "Search View"
+        header: null
+        
+
       }
     },
     PRODUCT_DETAIL: {
       screen: ProductDetail,
       navigationOptions: {
-        title: "Product Detail"
+        // title: "Product Detail"
+        header: null
       }
     }
   },

@@ -100,12 +100,12 @@ export default class ListProduct extends Component {
                 <View style={productInfo}>
                   <Text style={txtName}>{toTitleCase(product.name)}</Text>
                   <Text style={txtPrice}>{product.price}$</Text>
-                  <Text style={txtMaterial}>{product.material}</Text>
+                  <Text style={txtMaterial}>Material {product.material}</Text>
                   <View style={lastRowInfo}>
                     <Text style={txtColor}>{product.color}</Text>
                     <View
                       style={{
-                        backgroundColor: "cyan",
+                        backgroundColor: product.color.toLowerCase(),
                         height: 16,
                         width: 16,
                         borderRadius: 8

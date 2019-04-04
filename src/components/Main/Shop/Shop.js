@@ -40,6 +40,7 @@ export default class Shop extends React.Component {
     global.incrQuantity = this.incrQuantity.bind(this);
     global.decrQuantity = this.decrQuantity.bind(this);
     global.removeProduct = this.removeProduct.bind(this);
+    global.gotoSearch = this.gotoSearch.bind(this);
   }
 
   componentWillMount() {
@@ -107,13 +108,17 @@ export default class Shop extends React.Component {
     this.setState({ cartArray: newCart }, () => saveCart(this.state.cartArray));
   }
 
+  gotoSearch() {
+    this.setState({ selectedTab: "search" });
+  }
+
   render() {
     const { iconStyle } = styles;
     const { selectedTab, cartArray, types, topProducts } = this.state;
     console.log("----------------selectedTab---------------");
     console.log(selectedTab);
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor:"#DBDBD8" }}>
         <Header onOpen={() => this.props.navigation.openDrawer()} />
         {/* <ShopTabNavigator /> */}
         <TabNavigator>

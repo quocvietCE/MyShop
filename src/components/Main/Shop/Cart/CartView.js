@@ -45,9 +45,9 @@ class CartView extends Component {
   gotoDetail(product) {
     const { navigation } = this.props;
     navigation.navigate("PRODUCT_DETAIL_CART", { product });
-    console.log("======CartView gotoDetail======");
-    console.log(product);
-    console.log("============");
+    // console.log("======CartView gotoDetail======");
+    // console.log(product);
+    // console.log("============");
     // Actions.PRODUCT_DETAIL();
   }
 
