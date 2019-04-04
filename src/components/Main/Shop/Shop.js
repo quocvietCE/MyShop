@@ -78,6 +78,8 @@ export default class Shop extends React.Component {
 
   addProductToCart(product) {
     // setState là một phương thức bất đồng bộ
+    const isExist = this.state.cartArray.some(e => e.product.id === product.id);
+    if (isExist) return;
     this.setState(
       { cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
       () => saveCart(this.state.cartArray)
@@ -115,10 +117,10 @@ export default class Shop extends React.Component {
   render() {
     const { iconStyle } = styles;
     const { selectedTab, cartArray, types, topProducts } = this.state;
-    console.log("----------------selectedTab---------------");
-    console.log(selectedTab);
+    // console.log("----------------selectedTab---------------");
+    // console.log(selectedTab);
     return (
-      <View style={{ flex: 1, backgroundColor:"#DBDBD8" }}>
+      <View style={{ flex: 1, backgroundColor: "#DBDBD8" }}>
         <Header onOpen={() => this.props.navigation.openDrawer()} />
         {/* <ShopTabNavigator /> */}
         <TabNavigator>
