@@ -58,7 +58,7 @@ export default class Menu extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={btnStyleSignIn}
-            onPress={() => this.props.navigation.navigate("CHANGE_INFO")}
+            onPress={() => this.props.navigation.navigate("CHANGE_INFO",{user})}
           >
             <Text style={btnTextSignIn}>Change Info</Text>
           </TouchableOpacity>
