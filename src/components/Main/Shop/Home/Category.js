@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import Swiper from "react-native-swiper";
-import { Actions } from "react-native-router-flux";
+// import { Actions } from "react-native-router-flux";
 
 const { width, height } = Dimensions.get("window");
 
@@ -16,9 +16,9 @@ const { width, height } = Dimensions.get("window");
 const url = "http://192.168.56.1/api_MyShop/images/type/";
 
 export default class Category extends React.Component {
-  gotoListProduct() {
+  gotoListProduct(category) {
     const { navigation } = this.props;
-    navigation.navigate("LIST_PRODUCT");
+    navigation.navigate("LIST_PRODUCT",{category});
     // Actions.LIST_PRODUCT();
   }
 
@@ -29,7 +29,8 @@ export default class Category extends React.Component {
       <Swiper showsPagination width={imageWidth} height={imageHeight}>
         {types.map(e => (
           <TouchableOpacity
-            onPress={this.gotoListProduct.bind(this)}
+            // onPress={this.gotoListProduct.bind(this)}
+            onPress={()=>this.gotoListProduct(e)}
             ekey={e.id}
           >
             <ImageBackground source={{ uri: url + e.image }} style={imageStyle}>
