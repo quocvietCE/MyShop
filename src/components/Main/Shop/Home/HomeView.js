@@ -31,7 +31,7 @@ export default class HomeView extends React.Component {
     // const { navigation } = this.props.navigation;
     return (
       <ScrollView style={{ flex: 1, backgroundColor: "#DBDBD8" }}>
-        <Collection />
+        <Collection navigation={this.props.navigation} />
         <Category
           navigation={this.props.navigation}
           // navigation={navigation}

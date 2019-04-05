@@ -12,6 +12,12 @@ import bannerImage from "../../../../media/temp/banner.jpg";
 const { width, height } = Dimensions.get("window");
 
 export default class Collection extends React.Component {
+  goToListProduct() {
+    this.props.navigation.navigate("LIST_PRODUCT", {
+      category: { name: "SPRING COLLECTION", id: "COLLECTION" }
+    });
+  }
+
   render() {
     const { wrapper, textStyle, imageStyle, imageViewStyle } = styles;
     return (
@@ -19,9 +25,12 @@ export default class Collection extends React.Component {
         <View style={{ flex: 1, justifyContent: "center", paddingTop: 5 }}>
           <Text style={textStyle}>SPRING COLLECTION</Text>
         </View>
-        <View style={imageViewStyle}>
+        <TouchableOpacity
+          style={imageViewStyle}
+          onPress={this.goToListProduct.bind(this)}
+        >
           <Image source={bannerImage} style={imageStyle} />
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -45,11 +54,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#AFAEAF"
   },
-  imageViewStyle:{
-    flex: 4, 
-    padding: 10, 
+  imageViewStyle: {
+    flex: 4,
+    padding: 10,
     // justifyContent: "flex-end",
-    justifyContent: "center" 
+    justifyContent: "center"
   },
   imageStyle: {
     height: imageHeight,
