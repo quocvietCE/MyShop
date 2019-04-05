@@ -51,13 +51,13 @@ export default class Shop extends React.Component {
     initData().then(resJSON => {
       const { type, product } = resJSON;
       this.setState({ types: type, topProducts: product });
-      console.log("-----------Shop-------------");
-      console.log(topProducts);
+      // console.log("-----------Shop-------------");
+      // console.log(topProducts);
     });
     getToken()
       .then(token => checkLogin(token))
       .then(res => {
-        console.log("check login", res);
+        // console.log("check login", res);
         global.onSignIn(res.user);
       })
       .catch(err => console.log("Loi check login", err));

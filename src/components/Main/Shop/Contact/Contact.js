@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import map from "../../../../media/appIcon/map.png";
-
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import phoneIcon from "../../../../media/appIcon/phone.png";
 import mailIcon from "../../../../media/appIcon/mail.png";
 import messageIcon from "../../../../media/appIcon/message.png";
@@ -15,15 +15,32 @@ class Contact extends Component {
       infoContainer,
       rowInfoContainer,
       imageStyle,
-      infoText
+      infoText,
+      mapStyle
     } = styles;
     return (
       <View style={wrapper}>
         <View style={mapContainer}>
-          <Image
+          {/* <Image
             style={{ flex: 1, alignSelf: "stretch", width: undefined }}
             source={map}
-          />
+          /> */}
+          <MapView
+            provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+            style={mapStyle}
+            region={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.0121
+            }}
+          >
+            <Marker
+              coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+              title={"Khoa Pham"}
+              description={"My Shop"}
+            />
+          </MapView>
         </View>
         <View style={infoContainer}>
           <View style={rowInfoContainer}>

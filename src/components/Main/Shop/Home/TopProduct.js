@@ -48,10 +48,10 @@ export default class TopProduct extends React.Component {
       // images: product.images
       product
     });
-    console.log("======TopProduct======");
-    console.log("======goToDetail======");
-    console.log(product);
-    console.log("============");
+    // console.log("======TopProduct======");
+    // console.log("======goToDetail======");
+    // console.log(product);
+    // console.log("============");
   }
 
   // goToDetail(product) {
@@ -73,8 +73,8 @@ export default class TopProduct extends React.Component {
     } = styles;
 
     const { topProducts } = this.props;
-    console.log("-----------TopProduct-------------");
-    console.log(topProducts);
+    // console.log("-----------TopProduct-------------");
+    // console.log(topProducts);
 
     return (
       <View style={container}>
