@@ -10,10 +10,12 @@ import {
   ListView
 } from "react-native";
 import global from "../../../global";
-import getCart from "../../../../api/getCart";
+// import getCart from "../../../../api/getCart";
+import getToken from "../../../../api/getToken";
+import sendOrder from "../../../../api/sendOrder";
 
 // import sp1 from "../../.././../media/temp/sp1.jpeg";
-import sp1 from "../../../../media/temp/sp1.jpeg";
+// import sp1 from "../../../../media/temp/sp1.jpeg";
 
 const url = "http://10.102.1.236/api_MyShop/images/product/";
 // const url = "http://192.168.56.1/api_MyShop/images/product/";
@@ -55,6 +57,26 @@ class CartView extends Component {
   //   getCart().then(cartArray => this.setState({ cartArray }));
   // }
 
+  async onSendOrder() {
+    try {
+      const token = await getToken();
+      const arrayDetail = this.props.screenProps.cartArray.map(e => ({
+        id: e.product.id,
+        quantity: e.quantity
+      }));
+
+      console.log("======CartView Token ArrayDetail======");
+      console.log(token, arrayDetail);
+      console.log("============");
+      const kq = await sendOrder(token, arrayDetail);
+      if (kq === "THEM_THANH_CONG") {
+        console.log("THEM THANH CONG");
+      } else {
+        console.log("THEM THAT BAI", kq);
+      }
+    } catch (e) {}
+  }
+
   render() {
     const { cartArray } = this.props.screenProps;
     const {
@@ -74,13 +96,13 @@ class CartView extends Component {
     } = styles;
 
     const arrTotal = cartArray.map(e => e.product.price * e.quantity);
-    console.log("======CartView arrTotal======");
-    console.log(arrTotal);
-    console.log("============");
+    // console.log("======CartView arrTotal======");
+    // console.log(arrTotal);
+    // console.log("============");
     const total = arrTotal.length ? arrTotal.reduce((a, b) => a + b) : 0;
-    console.log("======CartView Total======");
-    console.log(total);
-    console.log("============");
+    // console.log("======CartView Total======");
+    // console.log(total);
+    // console.log("============");
     return (
       <View style={wrapper}>
         <ListView
@@ -141,7 +163,10 @@ class CartView extends Component {
             </View>
           )}
         />
-        <TouchableOpacity style={checkoutButton}>
+        <TouchableOpacity
+          style={checkoutButton}
+          onPress={this.onSendOrder.bind(this)}
+        >
           <Text style={checkoutTitle}>TOTAL {total}$ CHECKOUT NOW</Text>
         </TouchableOpacity>
       </View>

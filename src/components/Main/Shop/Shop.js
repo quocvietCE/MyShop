@@ -74,6 +74,7 @@ export default class Shop extends React.Component {
     //     console.log("============");
     //   });
     // }, 60 * 1000);
+    setInterval(refreshToken, 30000);
   } //làm bên HomeView
 
   addProductToCart(product) {
